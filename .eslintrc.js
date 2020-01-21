@@ -5,7 +5,7 @@ module.exports = {
   },
   'extends': [
     'plugin:vue/essential',
-    'eslint:recommended'
+    // 'eslint:recommended'   关闭检查空格报错
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',

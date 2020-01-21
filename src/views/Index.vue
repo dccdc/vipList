@@ -58,19 +58,19 @@
 			tabChange(e) {
 				this.query_text = null //重置查询框
 				// 销毁并重置组件，销毁后将无法取到缓存页面，若不销毁组件，上拉回弹会失效
-				// this.reset = false
-				// this.$nextTick(() => {
-				// this.reset = true
-				// })
+				this.reset = false
+				this.$nextTick(() => {
+				this.reset = true
+				})
 				// console.log('点击监听tab',e);
 			},
 			tabItemChange(e) {
 				this.query_text = null
 				// 销毁并重置
-				// this.reset = false
-				// this.$nextTick(() => {
-				// this.reset = true
-				// })
+				this.reset = false
+				this.$nextTick(() => {
+				this.reset = true
+				})
 				// console.log('滑动监听tabItem',e);
 			},
 			getTabs() {

@@ -5,22 +5,34 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import LyTab from './plugins/LyTab.js';
 import scroller from './plugins/vue-scroller.js';
+import Header from '@/components/common/Header.vue'
 
-import '@/assets/global.css'//引入全局css样式
+
+import '@/assets/global.css' //引入全局css样式
+// 全局注册组件
+Vue.component('Header', Header);
 
 Vue.config.productionTip = false
-Vue.prototype.token =
-	'eyJhbGciOiJIUzI1NiJ9.eyJpc3N1ZXIiOiJBY2NvdW50cyBKV1QgSXNzdWVyIDAuMSIsInBhcnRuZXJpZCI6IjAwMDAwMiIsImFwcGlkIjoiMjAxODExMjAwMDAwMDIwMSIsInN1YiI6IjA5ZDUyMWFmLTE4ZDItNDJmMi04NWExLTdmNzQ5ZWU3NmFkMCIsImV4cCI6MTU4MDA4MDUxMH0.YIapIOFOBqm87OrOq6W6Eb9fhdvSf-B891aY2rE3_eA'
+
+// 全局变量需要将变量设置为引用，直接赋值只是给每个组件增加了属性，这个属性值并不具有全局性
+Vue.prototype.$var = {
+	name: ''
+}
 //全局函数，格式化时间
 Vue.prototype.timeFormate = function(params) {
-	var date = new Date(params);
+	var date = null;
+	if (params) {
+		date = new Date(params);
+	} else {
+		date = new Date();
+	}
 	var year = date.getFullYear() + '-';
-	var month = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-	var day =  (date.getDate() < 10 ? '0'+date.getDate() : date.getDate())+ ' ';
-	var hour = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours())+ ':';
-	var minute = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()) + ':';
-	var second = (date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds());
-	return year+month+day+hour+minute+second;
+	var month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+	var day = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
+	var hour = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+	var minute = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+	var second = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+	return year + month + day + hour + minute + second;
 }
 Vue.prototype.timeFormatePlus = function(params) {
 	var dateArray = params.split(' ');
@@ -34,10 +46,20 @@ Vue.prototype.dateFormate = function(params) {
 	return dayArray[1] + '/' + dayArray[2] + ' ' + hourArray[0] + ':' + hourArray[1];
 }
 
-Vue.prototype.formate = function(number){
-		if(number > 0)
-			number = '+' + number;
-		return number;
+Vue.prototype.formate = function(number) {
+	if (number > 0)
+		number = '+' + number;
+	return number;
+}
+Vue.prototype.$bindAppBack = function() {
+	window['metroBack'] = data => {
+		this.$router.go(-1);
+	}
+	try {
+		metro.bindBack();
+	} catch (e) {
+
+	}
 }
 new Vue({
 	router,

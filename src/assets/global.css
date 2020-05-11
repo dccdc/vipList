@@ -12,18 +12,58 @@
 	top: 0px;
 	left: 0px;
 }
-
-.overflowText{
-	display: -webkit-box;/*将对象作为弹性伸缩盒子模型显示 */
-	-webkit-box-orient: vertical;/*设置或检索伸缩盒对象的子元素的排列方式*/
-	-webkit-line-clamp: 2; /* 用来限制在一个块元素显示的文本的行数, 为了实现该效果，它需要组合其他的WebKit属性*/
-	overflow: hidden;
-	text-overflow: ellipsis;/* 溢出隐藏文本 */
+.expireSub::before {
+	content: attr(data-expireSub);
+	line-height: 20px;
+	text-align: center;
+	color: white;
+	font-size: 11px;
+	width: 40px;
+	height: 20px;
+	border-radius: 0px 15px 15px 0px;
+	background-color: #a5a197;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
+.overflowText {
+	display: -webkit-box;
+	/*将对象作为弹性伸缩盒子模型显示 */
+	-webkit-box-orient: vertical;
+	/*设置或检索伸缩盒对象的子元素的排列方式*/
+	-webkit-line-clamp: 2;
+	/* 用来限制在一个块元素显示的文本的行数, 为了实现该效果，它需要组合其他的WebKit属性*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/* 溢出隐藏文本 */
+}
+
 /* 高德地图 */
-.amap-marker-label{
-		border:0;
-		color: black;
-		box-shadow: 1px 1px 5px #999;
-		border-radius: 2px;
-	}
+.amap-marker-label {
+	border: 0;
+	color: black;
+	box-shadow: 1px 1px 5px #999;
+	border-radius: 2px;
+}
+
+.header_red {
+	width: 100%;
+	height: 48px;
+	position: relative;
+	background-color: #d42425;
+}
+
+.absoluteCenter {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+
+
+}
+
+.zIndex{
+	position: absolute;
+	z-index: 100;
+}
